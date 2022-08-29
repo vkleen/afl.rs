@@ -27,7 +27,8 @@ fn build_afl(out_dir: &Path) {
         // build just the runtime to avoid troubles with Xcode clang on macOS
         .env("NO_BUILD", "1")
         .env("DESTDIR", out_dir)
-        .env("PREFIX", "");
+        .env("PREFIX", "")
+        .env_remove("DEBUG");
     let status = command.status().expect("could not run 'make'");
     assert!(status.success());
 }
